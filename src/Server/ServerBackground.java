@@ -32,9 +32,9 @@ public class ServerBackground {
 		serverSocket = new ServerSocket(7777);
 		while (true) {
 			// 서버가 할일 : 계속 접속받는것.
-			System.out.println("���� �����...");
+			System.out.println("서버 대기중...");
 			socket = serverSocket.accept(); // �ݺ��ؼ� ��� ����ڸ� �޴´�.
-			System.out.println(socket.getInetAddress() + " ���� �����߽��ϴ�.");
+			System.out.println(socket.getInetAddress() + "에서 접속했습니다.");
 			// 여기서 새로운 사용자 쓰레드 클래스 생성해서 소켓정보를 넣어준다.
 			Receiver receiver = new Receiver(socket);
 			receiver.start();
@@ -48,12 +48,12 @@ public class ServerBackground {
 
 	// 맵의내용(클라이언트) 저장과 삭제
 	public void addClient(String nick, DataOutputStream out) throws IOException {
-		sendMessage(nick + "���� �����ϼ̽��ϴ�.");
+		sendMessage(nick + "님이 접속하셨습니다.");
 		clientsMap.put(nick, out);
 	}
 
 	public void removeClient(String nick) {
-		sendMessage(nick + "���� �����̽��ϴ�.");
+		sendMessage(nick + "님이 나가셨습니다.");
 		clientsMap.remove(nick);
 	}
 
