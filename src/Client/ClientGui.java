@@ -35,7 +35,7 @@ public class ClientGui extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("당신의 닉네임을 설정하세요: ");		// 한글깨짐현상 인코딩 UTF-8로 바꾸기
+		System.out.print("당신의 닉네임을 설정하세요: ");		// 한글 깨짐현상 test!
 		nickName = scanner.nextLine();
 		scanner.close();
 

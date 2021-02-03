@@ -24,7 +24,7 @@ public class ServerBackground {
 	public final void setGui(ServerGui gui) {
 		this.gui = gui;
 	}
-
+	// 한글깨짐현상 발생
 	public void setting() throws IOException {
 		Collections.synchronizedMap(clientsMap); // 교통정리
 		serverSocket = new ServerSocket(7777);
