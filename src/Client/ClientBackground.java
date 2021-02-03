@@ -20,14 +20,14 @@ public class ClientBackground {
 	public void connet() {
 		try {
 			socket=new Socket("127.0.0.1",7777);
-			System.out.println("¼­¹ö ¿¬°áµÊ.");
+			System.out.println("ì„œë²„ ì—°ê²°ë¨.");
 			
 			out=new DataOutputStream(socket.getOutputStream());
 			in=new DataInputStream(socket.getInputStream());
 			
-			// Á¢¼ÓÇÏÀÚ¸¶ÀÚ ´Ğ³×ÀÓ Àü¼Û. ¼­¹ö°¡ ´Ğ³×ÀÓÀ¸·Î ÀÎ½ÄÇÏ°í ¸Ê¿¡ ÀúÀå
+			// ì ‘ì†í•˜ìë§ˆì ë‹‰ë„¤ì„ ì „ì†¡í•˜ë©´ ì„œë²„ê°€ ë‹‰ë„¤ì„ìœ¼ë¡œ ì¸ì‹í•˜ê³  ë§µì— ì§‘ì–´ë„£ëŠ”ë‹¤.
 			out.writeUTF(nickName);
-			System.out.println("Å¬¶óÀÌ¾ğÆ®:¸Ş½ÃÁö Àü¼Û¿Ï·á.");
+			System.out.println("í´ë¼ì´ì–¸íŠ¸:ë©”ì‹œì§€ ì „ì†¡ì™„ë£Œ.");
 			while(in!=null) {
 				msg=in.readUTF();
 				gui.appendMsg(msg);

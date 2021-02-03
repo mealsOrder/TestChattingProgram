@@ -26,7 +26,7 @@ public class ClientGui extends JFrame implements ActionListener {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		setBounds(800, 100, 400, 600);
-		setTitle("Å¬¶óÀÌ¾ğÆ®");
+		setTitle("í´ë¼ì´ì–¸íŠ¸");
 
 		client.setGui(this);
 		client.setNickname(nickName);
@@ -35,7 +35,7 @@ public class ClientGui extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("´ç½ÅÀÇ ´Ğ³×ÀÓÀ» ¼³Á¤ÇÏ¼¼¿ä: ");		// ÇÑ±Û ±úÁüÇö»ó test!
+		System.out.print("ë‹¹ì‹ ì˜ ë‹‰ë„¤ì„ì„ ì„¤ì •í•˜ì„¸ìš”:");		// í•œê¸€ê¹¨ì§ test
 		nickName = scanner.nextLine();
 		scanner.close();
 
@@ -43,7 +43,7 @@ public class ClientGui extends JFrame implements ActionListener {
 	}
 
 	@Override
-	// Ã¤ÆÃ º¸³»Áö´Â ºÎºĞ
+	// ë§ì¹˜ë©´ ë³´ë‚´ëŠ” ë¶€ë¶„
 	public void actionPerformed(ActionEvent e) {
 		String msg = nickName + ":" + jtf.getText() + "\n";
 		client.sendMessage(msg);

@@ -11,29 +11,31 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class ServerBackground {
-	// GUI¿¬µ¿½ÃÅ°¸é¼­ ¼­¹ö GUI¿¡ ¸Ş½ÃÁö ¶ç¿î´Ù.
-	// GUI»ó¿¡¼­ 1:1 Ã¤ÆÃÀ» ÇÏ·Á°í ÇÑ´Ù.
+	// ì§€ê¸ˆê¹Œì§€ í•œì¼ : GUIì—°ë™ì‹œí‚¤ë©´ì„œ ì„œë²„GUIì— ë©”ì‹œì§€ ë„ìš´ë‹¤.
+	// ë‹¤ìŒ ì´ìŠˆ : Gui ìƒì—ì„œ 1:1 ì±„íŒ…ì„ ì§„í–‰
 	private ServerSocket serverSocket;
 	private Socket socket;
 	private ServerGui gui;
 	private String msg;
 
-	// »ç¿ëÀÚµéÀÇ Á¤º¸¸¦ ÀúÀåÇÏ´Â ¸Ê.
+	// ì‚¬ìš©ìë“¤ì˜ ì •ë³´ë¥¼ ì €ì¥í•˜ëŠ” ë§µ
 	private Map<String, DataOutputStream> clientsMap = new HashMap<String, DataOutputStream>();
 
 	public final void setGui(ServerGui gui) {
 		this.gui = gui;
 	}
-	// ÇÑ±Û±úÁüÇö»ó ¹ß»ı
+	
 	public void setting() throws IOException {
-		Collections.synchronizedMap(clientsMap); // ±³ÅëÁ¤¸®
+		
+		// êµí†µì •ë¦¬
+		Collections.synchronizedMap(clientsMap); 
 		serverSocket = new ServerSocket(7777);
 		while (true) {
-			// ¼­¹ö°¡ ÇÒ ÀÏ : °è¼Ó Á¢¼Ó¹Ş´Â´Ù.
-			System.out.println("¼­¹ö ´ë±âÁß...");
-			socket = serverSocket.accept(); // ¹İº¹ÇØ¼­ °è¼Ó »ç¿ëÀÚ¸¦ ¹Ş´Â´Ù.
-			System.out.println(socket.getInetAddress() + " ¿¡¼­ Á¢¼ÓÇß½À´Ï´Ù.");
-			// »õ·Î¿î »ç¿ëÀÚ°¡ ¾²·¹µå Å¬·¡½º¸¦ »ı¼ºÇØ¼­ ¼ÒÄÏÁ¤º¸¸¦ ³Ö¾îÁØ´Ù.
+			// ì„œë²„ê°€ í• ì¼ : ê³„ì† ì ‘ì†ë°›ëŠ”ê²ƒ.
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½...");
+			socket = serverSocket.accept(); // ï¿½İºï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ş´Â´ï¿½.
+			System.out.println(socket.getInetAddress() + " ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
+			// ì—¬ê¸°ì„œ ìƒˆë¡œìš´ ì‚¬ìš©ì ì“°ë ˆë“œ í´ë˜ìŠ¤ ìƒì„±í•´ì„œ ì†Œì¼“ì •ë³´ë¥¼ ë„£ì–´ì¤€ë‹¤.
 			Receiver receiver = new Receiver(socket);
 			receiver.start();
 		}
@@ -44,18 +46,18 @@ public class ServerBackground {
 		serverBackground.setting();
 	}
 
-	// ¸ÊÀÇ ³»¿ë(Å¬¶óÀÌ¾ğÆ®) ÀúÀå°ú »èÁ¦
+	// ë§µì˜ë‚´ìš©(í´ë¼ì´ì–¸íŠ¸) ì €ì¥ê³¼ ì‚­ì œ
 	public void addClient(String nick, DataOutputStream out) throws IOException {
-		sendMessage(nick + "´ÔÀÌ Á¢¼ÓÇÏ¼Ì½À´Ï´Ù.");
+		sendMessage(nick + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼Ì½ï¿½ï¿½Ï´ï¿½.");
 		clientsMap.put(nick, out);
 	}
 
 	public void removeClient(String nick) {
-		sendMessage(nick + "´ÔÀÌ ³ª°¡¼Ì½À´Ï´Ù.");
+		sendMessage(nick + "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½Ï´ï¿½.");
 		clientsMap.remove(nick);
 	}
 
-	// ¸Ş¼¼Áö ³»¿ë ÀüÆÄ
+	// ë§¤ì‹œì§€ ë‚´ìš© ì „ì†¡
 	public void sendMessage(String msg) {
 		Iterator<String> it = clientsMap.keySet().iterator();
 		String key = "";
@@ -75,7 +77,7 @@ public class ServerBackground {
 		private DataOutputStream out;
 		private String nick;
 
-		// ¸®½Ã¹ö°¡ ÇÒÀÏ : ³×Æ®¿öÅ© Ã³¸®... µè±â... >> °è¼Ó ¹İº¹
+		// ë¦¬ì‹œë²„ê°€ í•œì¼ : ìê¸° í˜¼ìì„œ ë„¤íŠ¸ì›Œí¬ ì²˜ë¦¬ ê³„ì†... ë“£ê¸°... ì²˜ë¦¬
 		public Receiver(Socket socket)throws IOException{
 			out = new DataOutputStream(socket.getOutputStream());
 			in = new DataInputStream(socket.getInputStream());
@@ -84,14 +86,14 @@ public class ServerBackground {
 		}
 		
 		public void run() {
-			try {
+			try {// ê³„ì† ë“£ê¸°ë§Œ!
 				while(in!=null) {
 					msg=in.readUTF();
 					sendMessage(msg);
 					gui.appendMsg(msg);
 				}
 			}catch(IOException e) {
-				// »ç¿ëÁ¢¼Ó Á¾·á½Ã ¿©±â¼­ ¿¡·¯ ¹ß»ı.
+				// ì‚¬ìš©ì ‘ì†ì¢…ë£Œì‹œ ì—¬ê¸°ì„œ ì—ëŸ¬ë°œìƒ.
 				removeClient(nick);
 			}
 		}

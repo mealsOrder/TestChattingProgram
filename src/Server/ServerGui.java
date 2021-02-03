@@ -24,7 +24,7 @@ public class ServerGui extends JFrame implements ActionListener{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		setBounds(200,100,400,600);
-		setTitle("¼­¹öºÎºÐ");
+		setTitle("ì„œë²„ë¶€ë¶„");
 		
 		server.setGui(this);
 		server.setting();
@@ -36,7 +36,7 @@ public class ServerGui extends JFrame implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String msg="¼­¹ö:"+jtf.getText()+"\n";
+		String msg="ì„œë²„:"+jtf.getText()+"\n";
 		System.out.print(msg);
 		server.sendMessage(msg);
 		jtf.setText("");
