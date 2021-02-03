@@ -70,13 +70,13 @@ public class ServerBackground {
 	}
 
 	// --------------------------------------------------------------
-	class Reveiver extends Thread {
+	class Receiver extends Thread {
 		private DataInputStream in;
 		private DataOutputStream out;
 		private String nick;
 
 		// 리시버가 할일 : 네트워크 처리... 듣기... >> 계속 반복
-		public Reveiver(Socket socket)throws IOException{
+		public Receiver(Socket socket)throws IOException{
 			out = new DataOutputStream(socket.getOutputStream());
 			in = new DataInputStream(socket.getInputStream());
 			nick=in.readUTF();
