@@ -33,7 +33,7 @@ public class ServerBackground {
 		while (true) {
 			// 서버가 할일 : 계속 접속받는것.
 			System.out.println("서버 대기중...");
-			socket = serverSocket.accept(); // �ݺ��ؼ� ��� ����ڸ� �޴´�.
+			socket = serverSocket.accept();
 			System.out.println(socket.getInetAddress() + "에서 접속했습니다.");
 			// 여기서 새로운 사용자 쓰레드 클래스 생성해서 소켓정보를 넣어준다.
 			Receiver receiver = new Receiver(socket);
